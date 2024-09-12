@@ -12,20 +12,19 @@ mixin Break2 on Vehicle {
 }
 
 abstract class Vehicle {
-  late String name, brand, color;
+  String name, brand, color;
 
-  Vehicle(name, brand, color)
-      : this.name = name,
-        this.brand = brand,
-        this.color = color;
+  Vehicle.named({required this.name, required this.brand, required this.color});
+
+  // Vehicle({required this.name, required this.brand, required this.color});
 
   // Vehicle(String brand)
   void drive();
-  Vehicle.small(name, brand) : this(name, brand, 'black');
+  // Vehicle.small(name, brand) : this(name: name, brand: brand, color: 'black');
 }
 
 class Bike {
-  late String name, brand, color;
+  String name, brand, color;
 
   Bike(name, brand, color)
       : this.name = name,
