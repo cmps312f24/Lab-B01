@@ -22,9 +22,14 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           TextField(
             onChanged: (value) {
-              byHowMuch = int.parse(value);
+              setState(() {
+                counter = value.isEmpty ? 0 : int.parse(value);
+              });
             },
-            decoration: const InputDecoration(border: OutlineInputBorder()),
+            decoration: const InputDecoration(
+                border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+            )),
           ),
           const SizedBox(
             height: 10,
