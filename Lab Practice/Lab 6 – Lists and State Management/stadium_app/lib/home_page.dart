@@ -40,16 +40,18 @@ class _HomePageState extends State<HomePage> {
           child: Column(
         children: [
           Expanded(
-              child: ListView.builder(itemBuilder: (context, index){
-                  return ListTile(
-                    title: Text(_stadiums[index].name),
-                    subtitle: Text(_stadiums[index].city),
-                    leading: Image.asset('assets/images/${_stadiums[index].imageName}'),
-                    trailing: Text(_stadiums[index].status),
-                  );
-              },
-              itemCount: _stadiums.length,
-              )
+              child: ListView.builder(
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(_stadiums[index].name),
+                subtitle: Text(_stadiums[index].city),
+                leading:
+                    Image.asset('assets/images/${_stadiums[index].imageName}'),
+                trailing: Text(_stadiums[index].status),
+              );
+            },
+            itemCount: _stadiums.length,
+          ))
         ],
       )),
     );
