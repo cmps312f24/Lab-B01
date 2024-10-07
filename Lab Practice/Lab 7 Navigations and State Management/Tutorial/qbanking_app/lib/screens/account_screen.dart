@@ -30,7 +30,7 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
                       .read(accountNotifierProvider.notifier)
                       .removeAccount(accounts[index]);
                 },
-                icon: const Icon(Icons.delete)),
+                icon: const Icon(Icons.person)),
           ),
         );
       },
