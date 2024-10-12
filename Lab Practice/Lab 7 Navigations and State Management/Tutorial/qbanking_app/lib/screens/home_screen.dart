@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:qbanking_app/routes/app_router.dart';
+import 'package:qbanking_app/screens/shell_screen.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -25,27 +26,26 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   crossAxisCount: 2,
                 ),
                 children: [
-                  GestureDetector(
-                    onTap: () => context.goNamed(AppRouter.deposit.name,
-                        pathParameters: {'accountNo': '1234567890'}),
-                    child: const Card(
-                      elevation: 5,
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.money),
-                            Text(
-                              'Deposit',
-                              style: TextStyle(fontSize: 20),
-                            ),
-                          ],
-                        ),
+                  const Card(
+                    elevation: 5,
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.money),
+                          Text(
+                            'Deposit',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => context.goNamed(AppRouter.deposit.name),
+                    onTap: () {
+                      context.goNamed(AppRouter.deposit.name,
+                          pathParameters: {'accountNo': '1234567890'});
+                    },
                     child: const Card(
                       elevation: 5,
                       child: Center(
@@ -63,7 +63,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => context.goNamed(AppRouter.transfer.name),
+                    onTap: () {
+                      context.goNamed(AppRouter.transfer.name);
+                    },
                     child: const Card(
                       elevation: 5,
                       child: Center(
@@ -81,7 +83,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => context.goNamed(AppRouter.transaction.name),
+                    onTap: () {
+                      context.goNamed(AppRouter.transactions.name);
+                    },
                     child: const Card(
                       elevation: 5,
                       child: Center(

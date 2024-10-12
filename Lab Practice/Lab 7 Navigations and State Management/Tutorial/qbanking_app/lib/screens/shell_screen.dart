@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:qbanking_app/routes/app_router.dart';
 
 class ShellScreen extends StatelessWidget {
-  final Widget child;
-  const ShellScreen({super.key, required this.child});
+  final Widget? child;
+  const ShellScreen({super.key, this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,6 @@ class ShellScreen extends StatelessWidget {
         ],
         onTap: (index) {
           if (index == 0) {
-            //todo  add navigation
             context.go(AppRouter.home.path);
           } else {
             context.goNamed(AppRouter.account.name);
