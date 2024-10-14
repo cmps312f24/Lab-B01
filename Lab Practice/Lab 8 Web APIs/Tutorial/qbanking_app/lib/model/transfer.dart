@@ -21,11 +21,23 @@ class Transfer {
   factory Transfer.fromJson(Map<String, dynamic> map) {
     return Transfer(
       fromAccountNo: map['fromAccountNo'] ?? '',
-      amount: map['amount'] ?? 0.0,
+      amount: map['amount'] * 1.0 ?? 0.0,
       beneficiaryName: map['beneficiaryName'] ?? '',
       beneficiaryAccountNo: map['beneficiaryAccountNo'] ?? '',
       transferId: map['transferId'] ?? Random().nextInt(100000),
       cid: map['cid'] ?? 10001,
     );
+  }
+
+  // Method to convert a Transfer object to a map
+  Map<String, dynamic> toJson() {
+    return {
+      'fromAccountNo': fromAccountNo,
+      'amount': amount,
+      'beneficiaryName': beneficiaryName,
+      'beneficiaryAccountNo': beneficiaryAccountNo,
+      'transferId': transferId,
+      'cid': cid,
+    };
   }
 }

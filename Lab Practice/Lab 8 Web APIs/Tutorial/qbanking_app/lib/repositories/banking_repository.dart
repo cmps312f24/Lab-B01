@@ -81,7 +81,7 @@ class BankingRepository {
   //add the addTransfer method
   Future<Transfer> addTransfer(Transfer transfer) async {
     var url = '$_baseUrl/transfers/${transfer.cid}';
-    Response response = await _dio.post(url, data: jsonEncode(transfer));
+    Response response = await _dio.post(url, data: transfer.toJson());
     if (response.statusCode != 201) {
       throw Exception('Failed to add transfer');
     }
