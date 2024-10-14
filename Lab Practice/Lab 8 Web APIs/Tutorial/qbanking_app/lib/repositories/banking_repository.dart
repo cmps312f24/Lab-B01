@@ -66,23 +66,55 @@ class BankingRepository {
   //add the getBeneficiaries method
   Future<List<Beneficiary>> getBeneficiaries(int customerId) async {
     // read the json file
-    String data = await rootBundle.loadString('assets/data/beneficiaries.json');
-    // convert the json to a list of map
-    var beneficiariesMap = jsonDecode(data);
+    Response response = await _dio.get('$_baseUrl/beneficiaries/$customerId');
+    if (response.statusCode != 200) {
+      throw Exception('Failed to load beneficiaries');
+    }
     // convert the list of map to a list of account
     List<Beneficiary> beneficiaries = [];
-    for (var beneficiaryMap in beneficiariesMap) {
+    for (var beneficiaryMap in response.data) {
       beneficiaries.add(Beneficiary.fromJson(beneficiaryMap));
     }
     return beneficiaries;
   }
 
   //add the addTransfer method
-  Future<bool> addTransfer(Transfer transfer) async {
-    return true;
+  Future<Transfer> addTransfer(Transfer transfer) async {
+    var url = '$_baseUrl/transfers/${transfer.cid}';
+    Response response = await _dio.post(url, data: jsonEncode(transfer));
+    if (response.statusCode != 201) {
+      throw Exception('Failed to add transfer');
+    }
+    return Transfer.fromJson(response.data);
   }
 
   Future<bool> removeTransfer(Transfer transfer) async {
+    Response response = await _dio
+        .delete('$_baseUrl/transfers/${transfer.cid}/${transfer.transferId}');
+    if (response.statusCode != 200) {
+      throw Exception('Failed to remove transfer');
+    }
     return true;
+  }
+
+  Future<Beneficiary> updateBeneficiary(Beneficiary beneficiary) async {
+    var url =
+        '$_baseUrl/beneficiaries/${beneficiary.cid}/${beneficiary.accountNo}';
+
+    Response response = await _dio.put(url, data: jsonEncode(beneficiary));
+    if (response.statusCode != 200) {
+      throw Exception('Failed to update beneficiary');
+    }
+    return Beneficiary.fromJson(response.data);
+  }
+
+  Future<Beneficiary> addBeneficiary(Beneficiary beneficiary) async {
+    var url = '$_baseUrl/beneficiaries/${beneficiary.cid}';
+
+    Response response = await _dio.post(url, data: jsonEncode(beneficiary));
+    if (response.statusCode != 201) {
+      throw Exception('Failed to update beneficiary');
+    }
+    return Beneficiary.fromJson(response.data);
   }
 }

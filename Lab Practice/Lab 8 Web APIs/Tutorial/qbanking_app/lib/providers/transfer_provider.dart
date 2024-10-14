@@ -19,8 +19,8 @@ class TransferNotifier extends Notifier<List<Transfer>> {
   }
 
   void addTransfer(Transfer transfer) async {
-    bool isAdded = await _bankingRepository.addTransfer(transfer);
-    if (isAdded) state = [...state, transfer];
+    Transfer newTransfer = await _bankingRepository.addTransfer(transfer);
+    state = [...state, newTransfer];
   }
 
   void removeTransfer(Transfer transfer) async {
