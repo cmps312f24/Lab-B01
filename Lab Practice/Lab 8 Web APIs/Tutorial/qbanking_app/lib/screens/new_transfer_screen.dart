@@ -145,7 +145,9 @@ class _NewTransferScreenState extends ConsumerState<NewTransferScreen> {
                                 beneficiaryName:
                                     beneficiaries[_selectedBeneficiaryIndex!]
                                         .name,
-                                amount: _transferAmount);
+                                amount: _transferAmount,
+                                cid: beneficiaries[_selectedBeneficiaryIndex!]
+                                    .cid);
 
                             // update the transfer list
                             // navigate to the transfers screen
