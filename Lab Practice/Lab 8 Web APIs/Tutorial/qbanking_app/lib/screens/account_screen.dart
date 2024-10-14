@@ -27,7 +27,7 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
                   accounts[index].balance += 100;
                   //TODO update account balance
                 },
-                child: Text(accounts[index].balance.toString())),
+                child: Text(accounts[index].balance.ceilToDouble().toString())),
           ),
         );
       },
