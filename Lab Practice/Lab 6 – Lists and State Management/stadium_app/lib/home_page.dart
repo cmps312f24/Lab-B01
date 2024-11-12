@@ -15,7 +15,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    repo.getStadiums().then((stadiums) => {_stadiums = stadiums});
+    repo.getStadiums().then((stadiums) {
+      _stadiums = stadiums;
+      print(_stadiums);
+    });
     super.initState();
   }
 
@@ -45,8 +48,8 @@ class _HomePageState extends State<HomePage> {
               return ListTile(
                 title: Text(_stadiums[index].name),
                 subtitle: Text(_stadiums[index].city),
-                leading:
-                    Image.asset('assets/images/${_stadiums[index].imageName}'),
+                leading: Image.asset(
+                    'assets/images/${_stadiums[index].imageName}.jpg'),
                 trailing: Text(_stadiums[index].status),
               );
             },
