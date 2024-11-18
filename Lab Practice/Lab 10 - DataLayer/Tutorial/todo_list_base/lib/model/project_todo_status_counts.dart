@@ -1,6 +1,13 @@
 import 'package:floor/floor.dart';
+//use sum if
 
 // Todo : add the @Databaseview annotation
+@DatabaseView(
+  '''
+    
+  
+  '''
+)
 class ProjectTodoStatusCounts {
   @primaryKey
   final int id;
