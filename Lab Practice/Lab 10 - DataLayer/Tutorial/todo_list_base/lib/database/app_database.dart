@@ -13,6 +13,7 @@ part 'app_database.g.dart';
 
 // Todo AppDatabase class which extends FloorDatabase
 
+@Database(version: 1, entities: [] , views: [])
 abstract class AppDatabase {
   ProjectDao get projectDao;
   TodoDao get todoDao;
