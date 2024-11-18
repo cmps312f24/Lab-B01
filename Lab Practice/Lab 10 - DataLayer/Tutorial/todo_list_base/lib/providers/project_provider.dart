@@ -1,5 +1,6 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'dart:async';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo_list_base/model/project.dart';
 import 'package:todo_list_base/model/project_todo_status_counts.dart';
 import 'package:todo_list_base/providers/repo_provider.dart';
@@ -12,12 +13,16 @@ class ProjectNotifier extends AsyncNotifier<List<Project>> {
   Future<List<Project>> build() async {
     // Todo add the _todoListRepo initialization
     // Todo add the _todoListRepo.projectDao.observeProjects().listen((projects) { state = AsyncData(projects); });
+    _todoListRepo = await ref.watch(todoListRepoProvider.future);
+    _todoListRepo.observeProjects().listen((projects) {
+      state = AsyncData(projects);
+    });
 
     return []; // Initial empty state
   }
 
   void addProject(Project project) async {
-    await _todoListRepo.addProject(project);
+    await _todoListRepo.insertProject(project);
   }
 
   void updateProject(Project project) async {

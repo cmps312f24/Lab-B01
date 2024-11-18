@@ -34,9 +34,12 @@ class TodoListRepo {
 
   Future<Todo?> findTodoById(int id) => todoDao.findTodoById(id);
 
-  Future<void> insertTodo(Todo todo) => todoDao.insertTodo(todo);
+  Future<void> addTodo(Todo todo) => todoDao.insertTodo(todo);
 
   Future<void> updateTodo(Todo todo) => todoDao.updateTodo(todo);
 
   Future<void> deleteTodo(Todo todo) => todoDao.deleteTodo(todo);
+
+  Stream<ProjectTodoStatusCounts?> getProjectTodosStatusCounts(int projectId) =>
+      projectDao.observeProjectTodoStatusCounts(projectId);
 }
